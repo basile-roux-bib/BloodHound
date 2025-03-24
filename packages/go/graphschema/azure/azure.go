@@ -32,6 +32,7 @@ var (
 	Device                               = graph.StringKind("AZDevice")
 	FunctionApp                          = graph.StringKind("AZFunctionApp")
 	Group                                = graph.StringKind("AZGroup")
+	Group365                             = graph.StringKind("AZGroup365")
 	KeyVault                             = graph.StringKind("AZKeyVault")
 	ManagementGroup                      = graph.StringKind("AZManagementGroup")
 	ResourceGroup                        = graph.StringKind("AZResourceGroup")
@@ -105,6 +106,7 @@ const (
 	TenantID                Property = "tenantid"
 	ServicePrincipalID      Property = "service_principal_id"
 	ServicePrincipalNames   Property = "service_principal_names"
+	BusinessPhones          Property = "businessPhones"
 	OperatingSystemVersion  Property = "operatingsystemversion"
 	TrustType               Property = "trustype"
 	IsBuiltIn               Property = "isbuiltin"
@@ -132,7 +134,7 @@ const (
 )
 
 func AllProperties() []Property {
-	return []Property{AppOwnerOrganizationID, AppDescription, AppDisplayName, ServicePrincipalType, UserType, TenantID, ServicePrincipalID, ServicePrincipalNames, OperatingSystemVersion, TrustType, IsBuiltIn, AppID, AppRoleID, DeviceID, NodeResourceGroupID, OnPremID, OnPremSyncEnabled, SecurityEnabled, SecurityIdentifier, EnableRBACAuthorization, Scope, Offer, MFAEnabled, License, Licenses, LoginURL, MFAEnforced, UserPrincipalName, IsAssignableToRole, PublisherDomain, SignInAudience, RoleTemplateID}
+	return []Property{AppOwnerOrganizationID, AppDescription, AppDisplayName, ServicePrincipalType, UserType, TenantID, ServicePrincipalID, ServicePrincipalNames, BusinessPhones, OperatingSystemVersion, TrustType, IsBuiltIn, AppID, AppRoleID, DeviceID, NodeResourceGroupID, OnPremID, OnPremSyncEnabled, SecurityEnabled, SecurityIdentifier, EnableRBACAuthorization, Scope, Offer, MFAEnabled, License, Licenses, LoginURL, MFAEnforced, UserPrincipalName, IsAssignableToRole, PublisherDomain, SignInAudience, RoleTemplateID}
 }
 func ParseProperty(source string) (Property, error) {
 	switch source {
@@ -152,6 +154,8 @@ func ParseProperty(source string) (Property, error) {
 		return ServicePrincipalID, nil
 	case "service_principal_names":
 		return ServicePrincipalNames, nil
+	case "businessPhones":
+		return BusinessPhones, nil
 	case "operatingsystemversion":
 		return OperatingSystemVersion, nil
 	case "trustype":
@@ -222,6 +226,8 @@ func (s Property) String() string {
 		return string(ServicePrincipalID)
 	case ServicePrincipalNames:
 		return string(ServicePrincipalNames)
+	case BusinessPhones:
+		return string(BusinessPhones)
 	case OperatingSystemVersion:
 		return string(OperatingSystemVersion)
 	case TrustType:
@@ -292,6 +298,8 @@ func (s Property) Name() string {
 		return "Service Principal ID"
 	case ServicePrincipalNames:
 		return "Service Principal Names"
+	case BusinessPhones:
+		return "Business Phones"
 	case OperatingSystemVersion:
 		return "Operating System Version"
 	case TrustType:
@@ -371,5 +379,5 @@ func PathfindingRelationships() []graph.Kind {
 	return []graph.Kind{AvereContributor, Contributor, GetCertificates, GetKeys, GetSecrets, HasRole, MemberOf, Owner, RunsAs, VMContributor, AutomationContributor, KeyVaultContributor, VMAdminLogin, AddMembers, AddSecret, ExecuteCommand, GlobalAdmin, PrivilegedAuthAdmin, Grant, GrantSelf, PrivilegedRoleAdmin, ResetPassword, UserAccessAdministrator, Owns, CloudAppAdmin, AppAdmin, AddOwner, ManagedIdentity, AKSContributor, NodeResourceGroup, WebsiteContributor, LogicAppContributor, AZMGAddMember, AZMGAddOwner, AZMGAddSecret, AZMGGrantAppRoles, AZMGGrantRole, SyncedToADUser, Contains}
 }
 func NodeKinds() []graph.Kind {
-	return []graph.Kind{Entity, VMScaleSet, App, Role, Device, FunctionApp, Group, KeyVault, ManagementGroup, ResourceGroup, ServicePrincipal, Subscription, Tenant, User, VM, ManagedCluster, ContainerRegistry, WebApp, LogicApp, AutomationAccount}
+	return []graph.Kind{Entity, VMScaleSet, App, Role, Device, FunctionApp, Group, Group365, KeyVault, ManagementGroup, ResourceGroup, ServicePrincipal, Subscription, Tenant, User, VM, ManagedCluster, ContainerRegistry, WebApp, LogicApp, AutomationAccount}
 }

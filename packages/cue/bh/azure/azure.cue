@@ -156,6 +156,13 @@ UserPrincipalName: types.#StringEnum & {
 	representation: "userprincipalname"
 }
 
+BusinessPhones: types.#StringEnum & {
+	symbol:         "BusinessPhones"
+	schema:         "azure"
+	name:           "Business Phones"
+	representation: "businessPhones"
+}
+
 IsAssignableToRole: types.#StringEnum & {
 	symbol:         "IsAssignableToRole"
 	schema:         "azure"
@@ -263,6 +270,7 @@ Properties: [
 	TenantID,
 	ServicePrincipalID,
 	ServicePrincipalNames,
+	BusinessPhones,
 	OperatingSystemVersion,
 	TrustType,
 	IsBuiltIn,
@@ -330,6 +338,12 @@ Group: types.#Kind & {
 	symbol:         "Group"
 	schema:         "azure"
 	representation: "AZGroup"
+}
+
+Group365: types.#Kind & {
+	symbol:         "Group365"
+	schema:         "azure"
+	representation: "AZGroup365"
 }
 
 KeyVault: types.#Kind & {
@@ -418,6 +432,7 @@ NodeKinds: [
 	Device,
 	FunctionApp,
 	Group,
+	Group365,
 	KeyVault,
 	ManagementGroup,
 	ResourceGroup,

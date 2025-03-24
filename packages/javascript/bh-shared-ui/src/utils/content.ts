@@ -56,6 +56,8 @@ export const entityInformationEndpoints: Record<EntityKinds, (id: string, option
         apiClient.getAZEntityInfoV2('function-apps', id, undefined, false, undefined, undefined, undefined, options),
     [AzureNodeKind.Group]: (id: string, options?: RequestOptions) =>
         apiClient.getAZEntityInfoV2('groups', id, undefined, false, undefined, undefined, undefined, options),
+    [AzureNodeKind.Group365]: (id: string, options?: RequestOptions) =>
+        apiClient.getAZEntityInfoV2('groups365', id, undefined, false, undefined, undefined, undefined, options),
     [AzureNodeKind.KeyVault]: (id: string, options?: RequestOptions) =>
         apiClient.getAZEntityInfoV2('key-vaults', id, undefined, false, undefined, undefined, undefined, options),
     [AzureNodeKind.ManagementGroup]: (id: string, options?: RequestOptions) =>
@@ -124,6 +126,8 @@ export const entityInformationEndpoints: Record<EntityKinds, (id: string, option
     // LocalGroups and LocalUsers are entities that we handle directly and add the `Base` kind to so using getBaseV2 is an assumption but should work
     [ActiveDirectoryNodeKind.LocalGroup]: (id: string, options?: RequestOptions) =>
         apiClient.getBaseV2(id, false, options),
+    [ActiveDirectoryNodeKind.Group365]: (id: string, options?: RequestOptions) =>
+        apiClient.getAZEntityInfoV2('groups365', id, undefined, false, undefined, undefined, undefined, options),
     [ActiveDirectoryNodeKind.LocalUser]: (id: string, options?: RequestOptions) =>
         apiClient.getBaseV2(id, false, options),
 
@@ -222,6 +226,33 @@ export const allSections: Partial<Record<EntityKinds, (id: string) => EntityInfo
             id,
             label: 'Outbound Object Control',
             queryType: 'azgroup-outbound_object_control',
+        },
+    ],
+    [AzureNodeKind.Group365]: (id: string) => [
+        {
+            id,
+            label: 'Members',
+            queryType: 'azgroup365-members',
+        },
+        {
+            id,
+            label: 'Member Of',
+            queryType: 'azgroup365-member_of',
+        },
+        {
+            id,
+            label: 'Roles',
+            queryType: 'azgroup365-roles',
+        },
+        {
+            id,
+            label: 'Inbound Object Control',
+            queryType: 'azgroup365-inbound_object_control',
+        },
+        {
+            id,
+            label: 'Outbound Object Control',
+            queryType: 'azgroup365-outbound_object_control',
         },
     ],
     [AzureNodeKind.KeyVault]: (id: string) => [
@@ -1094,6 +1125,32 @@ export const entityRelationshipEndpoints = {
             })
             .then((res) => res.data),
     'azgroup-outbound_object_control': ({ id, counts, skip, limit, type }) =>
+        apiClient
+            .getAZEntityInfoV2('groups', id, 'outbound-control', counts, skip, limit, type, {
+                signal: controller.signal,
+            })
+            .then((res) => res.data),
+    'azgroup365-members': ({ id, counts, skip, limit, type }) =>
+        apiClient
+            .getAZEntityInfoV2('groups', id, 'group-members', counts, skip, limit, type, { signal: controller.signal })
+            .then((res) => res.data),
+    'azgroup365-member_of': ({ id, counts, skip, limit, type }) =>
+        apiClient
+            .getAZEntityInfoV2('groups', id, 'group-membership', counts, skip, limit, type, {
+                signal: controller.signal,
+            })
+            .then((res) => res.data),
+    'azgroup365-roles': ({ id, counts, skip, limit, type }) =>
+        apiClient
+            .getAZEntityInfoV2('groups', id, 'roles', counts, skip, limit, type, { signal: controller.signal })
+            .then((res) => res.data),
+    'azgroup365-inbound_object_control': ({ id, counts, skip, limit, type }) =>
+        apiClient
+            .getAZEntityInfoV2('groups', id, 'inbound-control', counts, skip, limit, type, {
+                signal: controller.signal,
+            })
+            .then((res) => res.data),
+    'azgroup365-outbound_object_control': ({ id, counts, skip, limit, type }) =>
         apiClient
             .getAZEntityInfoV2('groups', id, 'outbound-control', counts, skip, limit, type, {
                 signal: controller.signal,

@@ -239,6 +239,45 @@ func ParseGroupMembershipData(group Group) ParsedGroupMembershipData {
 	return result
 }
 
+func ParseGroup365MembershipData(group Group365) ParsedGroupMembershipData {
+	result := ParsedGroupMembershipData{}
+	for _, member := range group.Members {
+		if strings.HasPrefix(member.ObjectIdentifier, "DN=") {
+			result.DistinguishedNameMembers = append(result.DistinguishedNameMembers, NewIngestibleRelationship(
+				IngestibleSource{
+					Source:     member.ObjectIdentifier,
+					SourceType: member.Kind(),
+				},
+				IngestibleTarget{
+					Target:     group.ObjectIdentifier,
+					TargetType: ad.Group,
+				},
+				IngestibleRel{
+					RelProps: map[string]any{ad.IsACL.String(): false, "isprimarygroup": false},
+					RelType:  ad.MemberOf,
+				},
+			))
+		} else {
+			result.RegularMembers = append(result.RegularMembers, NewIngestibleRelationship(
+				IngestibleSource{
+					Source:     member.ObjectIdentifier,
+					SourceType: member.Kind(),
+				},
+				IngestibleTarget{
+					Target:     group.ObjectIdentifier,
+					TargetType: ad.Group,
+				},
+				IngestibleRel{
+					RelProps: map[string]any{ad.IsACL.String(): false, "isprimarygroup": false},
+					RelType:  ad.MemberOf,
+				},
+			))
+		}
+	}
+
+	return result
+}
+
 type WriteOwnerLimitedPrincipal struct {
 	SourceData  IngestibleSource
 	IsInherited bool
