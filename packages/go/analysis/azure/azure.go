@@ -66,7 +66,6 @@ func GetDescendentKinds(kind graph.Kind) []graph.Kind {
 			azure.AutomationAccount,
 			azure.KeyVault,
 			azure.FunctionApp,
-			//azure.Group365,
 		}
 
 	case azure.ResourceGroup:

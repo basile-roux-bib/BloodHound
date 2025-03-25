@@ -126,8 +126,7 @@ export const entityInformationEndpoints: Record<EntityKinds, (id: string, option
     // LocalGroups and LocalUsers are entities that we handle directly and add the `Base` kind to so using getBaseV2 is an assumption but should work
     [ActiveDirectoryNodeKind.LocalGroup]: (id: string, options?: RequestOptions) =>
         apiClient.getBaseV2(id, false, options),
-    [ActiveDirectoryNodeKind.Group365]: (id: string, options?: RequestOptions) =>
-        apiClient.getAZEntityInfoV2('groups365', id, undefined, false, undefined, undefined, undefined, options),
+
     [ActiveDirectoryNodeKind.LocalUser]: (id: string, options?: RequestOptions) =>
         apiClient.getBaseV2(id, false, options),
 
