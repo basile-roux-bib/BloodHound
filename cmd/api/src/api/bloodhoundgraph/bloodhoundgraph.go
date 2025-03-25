@@ -324,7 +324,7 @@ func (s *BloodHoundGraphNode) SetBackground(nType string) {
 	case "Group":
 		s.BloodHoundGraphItem.Color = "#DBE617"
 	case "AZGroup365":
-		s.BloodHoundGraphItem.Color = "#ED658C"
+		s.BloodHoundGraphItem.Color = "#34D2EB"
 	case "Computer":
 		s.BloodHoundGraphItem.Color = "#E67873"
 	case "Container":

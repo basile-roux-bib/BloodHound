@@ -75,3 +75,5 @@ Il semble y avoir également des choses à changer sur le fichier **go/ein** qui
 **packages\javascript\bh-shared-ui\src\views\DataQuality\TenantInfo.tsx** Définit les informations d'affichage relatif au Tenant azure.  
 *TODO : Ajouter/Supprimer le node d'intérêt dans "tenant info"*
 
+**packages\javascript\bh-shared-ui\src\utils\icons.ts** Relatif aux icons des nodes.  
+*TODO : Ajouter/Supprimer le node d'intérêt et définir sa représentation et sa couleur*
