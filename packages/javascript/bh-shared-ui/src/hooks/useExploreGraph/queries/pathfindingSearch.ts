@@ -22,6 +22,7 @@ import {
     ExploreGraphQueryKey,
     ExploreGraphQueryOptions,
     INITIAL_FILTER_TYPES,
+    sharedGraphQueryOptions,
     transformToFlatGraphResponse,
 } from './utils';
 
@@ -40,13 +41,13 @@ export const pathfindingSearchGraphQuery = (paramOptions: Partial<ExploreQueryPa
     const filter = pathFilters?.length ? createPathFilterString(pathFilters) : DEFAULT_FILTERS;
 
     return {
+        ...sharedGraphQueryOptions,
         queryKey: [ExploreGraphQueryKey, searchType, primarySearch, secondarySearch, filter],
         queryFn: ({ signal }) => {
             return apiClient
                 .getShortestPathV2(primarySearch, secondarySearch, filter, { signal })
                 .then((res) => transformToFlatGraphResponse(res.data));
         },
-        retry: false,
         enabled: !!(searchType && primarySearch && secondarySearch),
     };
 };
@@ -59,15 +60,15 @@ const getPathfindingErrorMessage = (error: any): ExploreGraphQueryError => {
         return {
             message:
                 'Calculating the requested Attack Path exceeded memory limitations due to the complexity of paths involved.',
-            key: 'shortestPathOutOfMemory',
+            key: 'ShortestPathOutOfMemory',
         };
     } else if (statusCode === 504) {
         return {
             message: 'The results took too long to compute, possibly due to the complexity of paths involved.',
-            key: 'shortestPathTimeout',
+            key: 'ShortestPathTimeout',
         };
     } else {
-        return { message: 'An unknown error occurred. Please try again.', key: 'shortestPathUnknown' };
+        return { message: 'An unknown error occurred. Please try again.', key: 'ShortestPathUnknown' };
     }
 };
 

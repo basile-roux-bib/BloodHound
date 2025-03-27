@@ -14,6 +14,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
+import { VirtualizedNodeListItem } from '../VirtualizedNodeList';
 import ADCSESC1 from './ADCSESC1/ADCSESC1';
 import ADCSESC10a from './ADCSESC10a/ADCSESC10a';
 import ADCSESC10b from './ADCSESC10b/ADCSESC10b';
@@ -77,6 +78,7 @@ import AllowedToAct from './AllowedToAct/AllowedToAct';
 import AllowedToDelegate from './AllowedToDelegate/AllowedToDelegate';
 import CanPSRemote from './CanPSRemote/CanPSRemote';
 import CanRDP from './CanRDP/CanRDP';
+import CoerceAndRelayNTLMToADCS from './CoerceAndRelayNTLMToADCS/CoerceAndRelayNTLMToADCS';
 import CoerceAndRelayNTLMToLDAP from './CoerceAndRelayNTLMToLDAP/CoerceAndRelayNTLMToLDAP';
 import CoerceAndRelayNTLMToLDAPS from './CoerceAndRelayNTLMToLDAPS/CoerceAndRelayNTLMToLDAPS';
 import CoerceAndRelayNTLMToSMB from './CoerceAndRelayNTLMToSMB/CoerceAndRelayNTLMToSMB';
@@ -109,6 +111,7 @@ import NTAuthStoreFor from './NTAuthStoreFor/NTAuthStoreFor';
 import OIDGroupLink from './OIDGroupLink/OIDGroupLink';
 import Owns from './Owns/Owns';
 import OwnsLimitedRights from './OwnsLimitedRights/OwnsLimitedRights';
+import OwnsRaw from './OwnsRaw/OwnsRaw';
 import PublishedTo from './PublishedTo/PublishedTo';
 import ReadGMSAPassword from './ReadGMSAPassword/ReadGMSAPassword';
 import ReadLAPSPassword from './ReadLAPSPassword/ReadLAPSPassword';
@@ -124,6 +127,7 @@ import WriteDacl from './WriteDacl/WriteDacl';
 import WriteGPLink from './WriteGPLink/WriteGPLink';
 import WriteOwner from './WriteOwner/WriteOwner';
 import WriteOwnerLimitedRights from './WriteOwnerLimitedRights/WriteOwnerLimitedRights';
+import WriteOwnerRaw from './WriteOwnerRaw/WriteOwnerRaw';
 import WritePKIEnrollmentFlag from './WritePKIEnrollmentFlag/WritePKIEnrollmentFlag';
 import WritePKINameFlag from './WritePKINameFlag/WritePKINameFlag';
 import WriteSPN from './WriteSPN/WriteSPN';
@@ -136,6 +140,7 @@ export type EdgeInfoProps = {
     targetDBId?: number;
     targetName?: string;
     targetType?: string;
+    onNodeClick?: (selectedNode: VirtualizedNodeListItem) => void;
 };
 
 const EdgeInfoComponents = {
@@ -149,9 +154,11 @@ const EdgeInfoComponents = {
     GenericWrite: GenericWrite,
     Owns: Owns,
     OwnsLimitedRights: OwnsLimitedRights,
+    OwnsRaw: OwnsRaw,
     WriteDacl: WriteDacl,
     WriteOwner: WriteOwner,
     WriteOwnerLimitedRights: WriteOwnerLimitedRights,
+    WriteOwnerRaw: WriteOwnerRaw,
     CanRDP: CanRDP,
     ExecuteDCOM: ExecuteDCOM,
     AllowedToDelegate: AllowedToDelegate,
@@ -252,6 +259,7 @@ const EdgeInfoComponents = {
     CoerceAndRelayNTLMToSMB: CoerceAndRelayNTLMToSMB,
     CoerceAndRelayNTLMToLDAP: CoerceAndRelayNTLMToLDAP,
     CoerceAndRelayNTLMToLDAPS: CoerceAndRelayNTLMToLDAPS,
+    CoerceAndRelayNTLMToADCS: CoerceAndRelayNTLMToADCS,
 };
 
 export default EdgeInfoComponents;

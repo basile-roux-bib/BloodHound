@@ -29,7 +29,6 @@ import {
     AzureNodeKind,
     AzureRelationshipKind,
     CommonKindProperties,
-    searchbarActions,
     useCreateSavedQuery,
 } from 'bh-shared-ui';
 import { useState } from 'react';
@@ -100,26 +99,16 @@ const schema = {
     ],
 };
 
-const useCypherEditor = () => {
-    const cypherQuery = useAppSelector((state) => state.search.cypher.searchTerm);
-
-    const dispatch = useAppDispatch();
-
-    const setCypherQuery = (query: string) => dispatch(searchbarActions.cypherQueryEdited(query));
-
-    const performSearch = () => dispatch(searchbarActions.cypherSearch(cypherQuery));
-
-    return {
-        cypherQuery,
-        setCypherQuery,
-        performSearch,
-    };
+type CypherSearchState = {
+    cypherQuery: string;
+    setCypherQuery: (query: string) => void;
+    performSearch: (query?: string) => void;
 };
 
-const CypherSearch = () => {
+const CypherSearch = ({ cypherSearchState }: { cypherSearchState: CypherSearchState }) => {
     const classes = useStyles();
 
-    const { cypherQuery, setCypherQuery, performSearch } = useCypherEditor();
+    const { cypherQuery, setCypherQuery, performSearch } = cypherSearchState;
     const createSavedQueryMutation = useCreateSavedQuery();
 
     const [showCommonQueries, setShowCommonQueries] = useState(false);
@@ -218,7 +207,7 @@ const CypherSearch = () => {
 
                     <Button asChild variant='secondary' rel='noreferrer' size={'small'}>
                         <Link
-                            href='https://support.bloodhoundenterprise.io/hc/en-us/articles/16721164740251'
+                            href='https://bloodhound.specterops.io/analyze-data/bloodhound-gui/cypher-search'
                             target='_blank'>
                             <Box display={'flex'} alignItems={'center'}>
                                 <FontAwesomeIcon icon={faQuestion} />
@@ -236,7 +225,7 @@ const CypherSearch = () => {
                 </Box>
 
                 <Box display={showCommonQueries ? 'initial' : 'none'} flexGrow={1} minHeight={0}>
-                    <CommonSearches />
+                    <CommonSearches onSetCypherQuery={setCypherQuery} onPerformCypherSearch={performSearch} />
                 </Box>
 
                 {showEgg && <EasterEgg />}

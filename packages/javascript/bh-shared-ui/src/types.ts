@@ -36,10 +36,18 @@ type AdministrationItem = {
     path: string;
     component: React.LazyExoticComponent<React.FC>;
     adminOnly: boolean;
+    supportedSearchParams?: string[];
 };
 
 export type AdministrationSection = {
     title: string;
     items: AdministrationItem[];
     order: number;
+};
+
+export type PrimaryNavItem = {
+    label: string;
+    icon: JSX.Element;
+    route: string;
+    testId: string;
 };

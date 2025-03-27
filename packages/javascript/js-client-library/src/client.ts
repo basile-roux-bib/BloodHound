@@ -17,15 +17,18 @@
 import axios, { AxiosInstance } from 'axios';
 import {
     ActiveDirectoryDataQualityResponse,
+    AssetGroupLabelResponse,
     AssetGroupMemberCountsResponse,
+    AssetGroupMemberResponse,
     AssetGroupMembersResponse,
     AssetGroupResponse,
+    AssetGroupSelectorResponse,
     AzureDataQualityResponse,
     BasicResponse,
     CreateAuthTokenResponse,
     DatapipeStatusResponse,
-    Domain,
     EndFileIngestResponse,
+    Environment,
     GetConfigurationResponse,
     ListAuthTokensResponse,
     ListFileIngestJobsResponse,
@@ -107,13 +110,59 @@ class BHEAPIClient {
         return this.baseClient.post('/api/v2/clear-database', payload, options);
     };
 
-    getAvailableDomains = (options?: types.RequestOptions) =>
-        this.baseClient.get<BasicResponse<Domain[]>>('/api/v2/available-domains', options);
+    getAvailableEnvironments = (options?: types.RequestOptions) =>
+        this.baseClient.get<BasicResponse<Environment[]>>('/api/v2/available-domains', options);
 
     /* audit */
     getAuditLogs = (options?: types.RequestOptions) => this.baseClient.get('/api/v2/audit', options);
 
     /* asset groups */
+
+    getAssetGroupLabels = (options?: types.RequestOptions) =>
+        this.baseClient.get<AssetGroupLabelResponse>(`/api/v2/asset-group-labels`, options);
+
+    getAssetGroupSelectors = (assetGroupId: number, options?: types.RequestOptions) =>
+        this.baseClient.get<AssetGroupSelectorResponse>(
+            `/api/v2/asset-group-labels/${assetGroupId}/selectors`,
+            options
+        );
+
+    getAssetGroupLabelMembers = (assetGroupId: number, skip: number, limit: number, options?: types.RequestOptions) =>
+        this.baseClient.get<AssetGroupMemberResponse>(
+            `/api/v2/asset-group-labels/${assetGroupId}/members`,
+            Object.assign(
+                {
+                    params: {
+                        skip,
+                        limit,
+                    },
+                },
+                options
+            )
+        );
+
+    getAssetGroupSelectorMembers = (
+        assetGroupId: number,
+        selectorId: number,
+        skip: number,
+        limit: number,
+        options?: types.RequestOptions
+    ) =>
+        this.baseClient.get<AssetGroupMemberResponse>(
+            `/api/v2/asset-group-labels/${assetGroupId}/selectors/${selectorId}/members`,
+            Object.assign(
+                {
+                    params: {
+                        skip,
+                        limit,
+                    },
+                },
+                options
+            )
+        );
+
+    /* */
+
     createAssetGroup = (assetGroup: types.CreateAssetGroupRequest, options?: types.RequestOptions) =>
         this.baseClient.post('/api/v2/asset-groups', assetGroup, options);
 

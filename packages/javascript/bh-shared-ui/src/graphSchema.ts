@@ -309,360 +309,369 @@ return undefined
 export type ActiveDirectoryKind = ActiveDirectoryNodeKind|ActiveDirectoryRelationshipKind
 export const EdgeCompositionRelationships = ['GoldenCert','ADCSESC1','ADCSESC3','ADCSESC4','ADCSESC6a','ADCSESC6b','ADCSESC9a','ADCSESC9b','ADCSESC10a','ADCSESC10b','ADCSESC13','CoerceAndRelayNTLMToSMB','CoerceAndRelayNTLMToADCS','CoerceAndRelayNTLMToLDAP','CoerceAndRelayNTLMToLDAPS']
 export enum ActiveDirectoryKindProperties {
-AdminCount = 'admincount',
-CASecurityCollected = 'casecuritycollected',
-CAName = 'caname',
-CertChain = 'certchain',
-CertName = 'certname',
-CertThumbprint = 'certthumbprint',
-CertThumbprints = 'certthumbprints',
-HasEnrollmentAgentRestrictions = 'hasenrollmentagentrestrictions',
-EnrollmentAgentRestrictionsCollected = 'enrollmentagentrestrictionscollected',
-IsUserSpecifiesSanEnabled = 'isuserspecifiessanenabled',
-IsUserSpecifiesSanEnabledCollected = 'isuserspecifiessanenabledcollected',
-RoleSeparationEnabled = 'roleseparationenabled',
-RoleSeparationEnabledCollected = 'roleseparationenabledcollected',
-HasBasicConstraints = 'hasbasicconstraints',
-BasicConstraintPathLength = 'basicconstraintpathlength',
-UnresolvedPublishedTemplates = 'unresolvedpublishedtemplates',
-DNSHostname = 'dnshostname',
-CrossCertificatePair = 'crosscertificatepair',
-DistinguishedName = 'distinguishedname',
-DomainFQDN = 'domain',
-DomainSID = 'domainsid',
-Sensitive = 'sensitive',
-BlocksInheritance = 'blocksinheritance',
-IsACL = 'isacl',
-IsACLProtected = 'isaclprotected',
-IsDeleted = 'isdeleted',
-Enforced = 'enforced',
-Department = 'department',
-HasCrossCertificatePair = 'hascrosscertificatepair',
-HasSPN = 'hasspn',
-UnconstrainedDelegation = 'unconstraineddelegation',
-LastLogon = 'lastlogon',
-LastLogonTimestamp = 'lastlogontimestamp',
-IsPrimaryGroup = 'isprimarygroup',
-HasLAPS = 'haslaps',
-DontRequirePreAuth = 'dontreqpreauth',
-LogonType = 'logontype',
-HasURA = 'hasura',
-PasswordNeverExpires = 'pwdneverexpires',
-PasswordNotRequired = 'passwordnotreqd',
-FunctionalLevel = 'functionallevel',
-TrustType = 'trusttype',
-SidFiltering = 'sidfiltering',
-TrustedToAuth = 'trustedtoauth',
-SamAccountName = 'samaccountname',
-CertificateMappingMethodsRaw = 'certificatemappingmethodsraw',
-CertificateMappingMethods = 'certificatemappingmethods',
-StrongCertificateBindingEnforcementRaw = 'strongcertificatebindingenforcementraw',
-StrongCertificateBindingEnforcement = 'strongcertificatebindingenforcement',
-EKUs = 'ekus',
-SubjectAltRequireUPN = 'subjectaltrequireupn',
-SubjectAltRequireDNS = 'subjectaltrequiredns',
-SubjectAltRequireDomainDNS = 'subjectaltrequiredomaindns',
-SubjectAltRequireEmail = 'subjectaltrequireemail',
-SubjectAltRequireSPN = 'subjectaltrequirespn',
-SubjectRequireEmail = 'subjectrequireemail',
-AuthorizedSignatures = 'authorizedsignatures',
-ApplicationPolicies = 'applicationpolicies',
-IssuancePolicies = 'issuancepolicies',
-SchemaVersion = 'schemaversion',
-RequiresManagerApproval = 'requiresmanagerapproval',
-AuthenticationEnabled = 'authenticationenabled',
-SchannelAuthenticationEnabled = 'schannelauthenticationenabled',
-EnrolleeSuppliesSubject = 'enrolleesuppliessubject',
-CertificateApplicationPolicy = 'certificateapplicationpolicy',
-CertificateNameFlag = 'certificatenameflag',
-EffectiveEKUs = 'effectiveekus',
-EnrollmentFlag = 'enrollmentflag',
-Flags = 'flags',
-NoSecurityExtension = 'nosecurityextension',
-RenewalPeriod = 'renewalperiod',
-ValidityPeriod = 'validityperiod',
-OID = 'oid',
-HomeDirectory = 'homedirectory',
-CertificatePolicy = 'certificatepolicy',
-CertTemplateOID = 'certtemplateoid',
-GroupLinkID = 'grouplinkid',
-ObjectGUID = 'objectguid',
-ExpirePasswordsOnSmartCardOnlyAccounts = 'expirepasswordsonsmartcardonlyaccounts',
-MachineAccountQuota = 'machineaccountquota',
-SupportedKerberosEncryptionTypes = 'supportedencryptiontypes',
-TGTDelegationEnabled = 'tgtdelegationenabled',
-PasswordStoredUsingReversibleEncryption = 'encryptedtextpwdallowed',
-SmartcardRequired = 'smartcardrequired',
-UseDESKeyOnly = 'usedeskeyonly',
-LogonScriptEnabled = 'logonscriptenabled',
-LockedOut = 'lockedout',
-UserCannotChangePassword = 'passwordcantchange',
-PasswordExpired = 'passwordexpired',
-DSHeuristics = 'dsheuristics',
-UserAccountControl = 'useraccountcontrol',
-TrustAttributes = 'trustattributes',
-MinPwdLength = 'minpwdlength',
-PwdProperties = 'pwdproperties',
-PwdHistoryLength = 'pwdhistorylength',
-LockoutThreshold = 'lockoutthreshold',
-MinPwdAge = 'minpwdage',
-MaxPwdAge = 'maxpwdage',
-LockoutDuration = 'lockoutduration',
-LockoutObservationWindow = 'lockoutobservationwindow',
-OwnerSid = 'ownersid',
-SMBSigning = 'smbsigning',
-WebClientRunning = 'webclientrunning',
-RestrictOutboundNTLM = 'restrictoutboundntlm',
-GMSA = 'gmsa',
-MSA = 'msa',
-DoesAnyAceGrantOwnerRights = 'doesanyacegrantownerrights',
-DoesAnyInheritedAceGrantOwnerRights = 'doesanyinheritedacegrantownerrights',
-ADCSWebEnrollmentHTTP = 'adcswebenrollmenthttp',
-ADCSWebEnrollmentHTTPS = 'adcswebenrollmenthttps',
-ADCSWebEnrollmentHTTPSEPA = 'adcswebenrollmenthttpsepa',
-LDAPSigning = 'ldapsigning',
-LDAPAvailable = 'ldapavailable',
-LDAPSAvailable = 'ldapsavailable',
-LDAPSEPA = 'ldapsepa',
-IsDC = 'isdc',
+    AdminCount = 'admincount',
+    CASecurityCollected = 'casecuritycollected',
+    CAName = 'caname',
+    CertChain = 'certchain',
+    CertName = 'certname',
+    CertThumbprint = 'certthumbprint',
+    CertThumbprints = 'certthumbprints',
+    HasEnrollmentAgentRestrictions = 'hasenrollmentagentrestrictions',
+    EnrollmentAgentRestrictionsCollected = 'enrollmentagentrestrictionscollected',
+    IsUserSpecifiesSanEnabled = 'isuserspecifiessanenabled',
+    IsUserSpecifiesSanEnabledCollected = 'isuserspecifiessanenabledcollected',
+    RoleSeparationEnabled = 'roleseparationenabled',
+    RoleSeparationEnabledCollected = 'roleseparationenabledcollected',
+    HasBasicConstraints = 'hasbasicconstraints',
+    BasicConstraintPathLength = 'basicconstraintpathlength',
+    UnresolvedPublishedTemplates = 'unresolvedpublishedtemplates',
+    DNSHostname = 'dnshostname',
+    CrossCertificatePair = 'crosscertificatepair',
+    DistinguishedName = 'distinguishedname',
+    DomainFQDN = 'domain',
+    DomainSID = 'domainsid',
+    Sensitive = 'sensitive',
+    BlocksInheritance = 'blocksinheritance',
+    IsACL = 'isacl',
+    IsACLProtected = 'isaclprotected',
+    IsDeleted = 'isdeleted',
+    Enforced = 'enforced',
+    Department = 'department',
+    HasCrossCertificatePair = 'hascrosscertificatepair',
+    HasSPN = 'hasspn',
+    UnconstrainedDelegation = 'unconstraineddelegation',
+    LastLogon = 'lastlogon',
+    LastLogonTimestamp = 'lastlogontimestamp',
+    IsPrimaryGroup = 'isprimarygroup',
+    HasLAPS = 'haslaps',
+    DontRequirePreAuth = 'dontreqpreauth',
+    LogonType = 'logontype',
+    HasURA = 'hasura',
+    PasswordNeverExpires = 'pwdneverexpires',
+    PasswordNotRequired = 'passwordnotreqd',
+    FunctionalLevel = 'functionallevel',
+    TrustType = 'trusttype',
+    SidFiltering = 'sidfiltering',
+    TrustedToAuth = 'trustedtoauth',
+    SamAccountName = 'samaccountname',
+    CertificateMappingMethodsRaw = 'certificatemappingmethodsraw',
+    CertificateMappingMethods = 'certificatemappingmethods',
+    StrongCertificateBindingEnforcementRaw = 'strongcertificatebindingenforcementraw',
+    StrongCertificateBindingEnforcement = 'strongcertificatebindingenforcement',
+    EKUs = 'ekus',
+    SubjectAltRequireUPN = 'subjectaltrequireupn',
+    SubjectAltRequireDNS = 'subjectaltrequiredns',
+    SubjectAltRequireDomainDNS = 'subjectaltrequiredomaindns',
+    SubjectAltRequireEmail = 'subjectaltrequireemail',
+    SubjectAltRequireSPN = 'subjectaltrequirespn',
+    SubjectRequireEmail = 'subjectrequireemail',
+    AuthorizedSignatures = 'authorizedsignatures',
+    ApplicationPolicies = 'applicationpolicies',
+    IssuancePolicies = 'issuancepolicies',
+    SchemaVersion = 'schemaversion',
+    RequiresManagerApproval = 'requiresmanagerapproval',
+    AuthenticationEnabled = 'authenticationenabled',
+    SchannelAuthenticationEnabled = 'schannelauthenticationenabled',
+    EnrolleeSuppliesSubject = 'enrolleesuppliessubject',
+    CertificateApplicationPolicy = 'certificateapplicationpolicy',
+    CertificateNameFlag = 'certificatenameflag',
+    EffectiveEKUs = 'effectiveekus',
+    EnrollmentFlag = 'enrollmentflag',
+    Flags = 'flags',
+    NoSecurityExtension = 'nosecurityextension',
+    RenewalPeriod = 'renewalperiod',
+    ValidityPeriod = 'validityperiod',
+    OID = 'oid',
+    HomeDirectory = 'homedirectory',
+    CertificatePolicy = 'certificatepolicy',
+    CertTemplateOID = 'certtemplateoid',
+    GroupLinkID = 'grouplinkid',
+    ObjectGUID = 'objectguid',
+    ExpirePasswordsOnSmartCardOnlyAccounts = 'expirepasswordsonsmartcardonlyaccounts',
+    MachineAccountQuota = 'machineaccountquota',
+    SupportedKerberosEncryptionTypes = 'supportedencryptiontypes',
+    TGTDelegationEnabled = 'tgtdelegationenabled',
+    PasswordStoredUsingReversibleEncryption = 'encryptedtextpwdallowed',
+    SmartcardRequired = 'smartcardrequired',
+    UseDESKeyOnly = 'usedeskeyonly',
+    LogonScriptEnabled = 'logonscriptenabled',
+    LockedOut = 'lockedout',
+    UserCannotChangePassword = 'passwordcantchange',
+    PasswordExpired = 'passwordexpired',
+    DSHeuristics = 'dsheuristics',
+    UserAccountControl = 'useraccountcontrol',
+    TrustAttributes = 'trustattributes',
+    MinPwdLength = 'minpwdlength',
+    PwdProperties = 'pwdproperties',
+    PwdHistoryLength = 'pwdhistorylength',
+    LockoutThreshold = 'lockoutthreshold',
+    MinPwdAge = 'minpwdage',
+    MaxPwdAge = 'maxpwdage',
+    LockoutDuration = 'lockoutduration',
+    LockoutObservationWindow = 'lockoutobservationwindow',
+    OwnerSid = 'ownersid',
+    SMBSigning = 'smbsigning',
+    WebClientRunning = 'webclientrunning',
+    RestrictOutboundNTLM = 'restrictoutboundntlm',
+    GMSA = 'gmsa',
+    MSA = 'msa',
+    DoesAnyAceGrantOwnerRights = 'doesanyacegrantownerrights',
+    DoesAnyInheritedAceGrantOwnerRights = 'doesanyinheritedacegrantownerrights',
+    ADCSWebEnrollmentHTTP = 'adcswebenrollmenthttp',
+    ADCSWebEnrollmentHTTPS = 'adcswebenrollmenthttps',
+    ADCSWebEnrollmentHTTPSEPA = 'adcswebenrollmenthttpsepa',
+    LDAPSigning = 'ldapsigning',
+    LDAPAvailable = 'ldapavailable',
+    LDAPSAvailable = 'ldapsavailable',
+    LDAPSEPA = 'ldapsepa',
+    IsDC = 'isdc',
+    HTTPEnrollmentEndpoints = 'httpenrollmentendpoints',
+    HTTPSEnrollmentEndpoints = 'httpsenrollmentendpoints',
+    HasVulnerableEndpoint = 'hasvulnerableendpoint',
 }
-export function ActiveDirectoryKindPropertiesToDisplay (value : ActiveDirectoryKindProperties): string | undefined {
-switch (value) {
-case ActiveDirectoryKindProperties.AdminCount: 
-return 'Admin Count'
-case ActiveDirectoryKindProperties.CASecurityCollected: 
-return 'CA Security Collected'
-case ActiveDirectoryKindProperties.CAName: 
-return 'CA Name'
-case ActiveDirectoryKindProperties.CertChain: 
-return 'Certificate Chain'
-case ActiveDirectoryKindProperties.CertName: 
-return 'Certificate Name'
-case ActiveDirectoryKindProperties.CertThumbprint: 
-return 'Certificate Thumbprint'
-case ActiveDirectoryKindProperties.CertThumbprints: 
-return 'Certificate Thumbprints'
-case ActiveDirectoryKindProperties.HasEnrollmentAgentRestrictions: 
-return 'Has Enrollment Agent Restrictions'
-case ActiveDirectoryKindProperties.EnrollmentAgentRestrictionsCollected: 
-return 'Enrollment Agent Restrictions Collected'
-case ActiveDirectoryKindProperties.IsUserSpecifiesSanEnabled: 
-return 'Is User Specifies San Enabled'
-case ActiveDirectoryKindProperties.IsUserSpecifiesSanEnabledCollected: 
-return 'Is User Specifies San Enabled Collected'
-case ActiveDirectoryKindProperties.RoleSeparationEnabled: 
-return 'Role Separation Enabled'
-case ActiveDirectoryKindProperties.RoleSeparationEnabledCollected: 
-return 'Role Separation Enabled Collected'
-case ActiveDirectoryKindProperties.HasBasicConstraints: 
-return 'Has Basic Constraints'
-case ActiveDirectoryKindProperties.BasicConstraintPathLength: 
-return 'Basic Constraint Path Length'
-case ActiveDirectoryKindProperties.UnresolvedPublishedTemplates: 
-return 'Unresolved Published Certificate Templates'
-case ActiveDirectoryKindProperties.DNSHostname: 
-return 'DNS Hostname'
-case ActiveDirectoryKindProperties.CrossCertificatePair: 
-return 'Cross Certificate Pair'
-case ActiveDirectoryKindProperties.DistinguishedName: 
-return 'Distinguished Name'
-case ActiveDirectoryKindProperties.DomainFQDN: 
-return 'Domain FQDN'
-case ActiveDirectoryKindProperties.DomainSID: 
-return 'Domain SID'
-case ActiveDirectoryKindProperties.Sensitive: 
-return 'Marked Sensitive'
-case ActiveDirectoryKindProperties.BlocksInheritance: 
-return 'Blocks GPO Inheritance'
-case ActiveDirectoryKindProperties.IsACL: 
-return 'Is ACL'
-case ActiveDirectoryKindProperties.IsACLProtected: 
-return 'ACL Inheritance Denied'
-case ActiveDirectoryKindProperties.IsDeleted: 
-return 'Is Deleted'
-case ActiveDirectoryKindProperties.Enforced: 
-return 'Enforced'
-case ActiveDirectoryKindProperties.Department: 
-return 'Department'
-case ActiveDirectoryKindProperties.HasCrossCertificatePair: 
-return 'Has Cross Certificate Pair'
-case ActiveDirectoryKindProperties.HasSPN: 
-return 'Has SPN'
-case ActiveDirectoryKindProperties.UnconstrainedDelegation: 
-return 'Allows Unconstrained Delegation'
-case ActiveDirectoryKindProperties.LastLogon: 
-return 'Last Logon'
-case ActiveDirectoryKindProperties.LastLogonTimestamp: 
-return 'Last Logon (Replicated)'
-case ActiveDirectoryKindProperties.IsPrimaryGroup: 
-return 'Is Primary Group'
-case ActiveDirectoryKindProperties.HasLAPS: 
-return 'LAPS Enabled'
-case ActiveDirectoryKindProperties.DontRequirePreAuth: 
-return 'Do Not Require Pre-Authentication'
-case ActiveDirectoryKindProperties.LogonType: 
-return 'Logon Type'
-case ActiveDirectoryKindProperties.HasURA: 
-return 'Has User Rights Assignment Collection'
-case ActiveDirectoryKindProperties.PasswordNeverExpires: 
-return 'Password Never Expires'
-case ActiveDirectoryKindProperties.PasswordNotRequired: 
-return 'Password Not Required'
-case ActiveDirectoryKindProperties.FunctionalLevel: 
-return 'Functional Level'
-case ActiveDirectoryKindProperties.TrustType: 
-return 'Trust Type'
-case ActiveDirectoryKindProperties.SidFiltering: 
-return 'SID Filtering Enabled'
-case ActiveDirectoryKindProperties.TrustedToAuth: 
-return 'Trusted For Constrained Delegation'
-case ActiveDirectoryKindProperties.SamAccountName: 
-return 'SAM Account Name'
-case ActiveDirectoryKindProperties.CertificateMappingMethodsRaw: 
-return 'Certificate Mapping Methods (Raw)'
-case ActiveDirectoryKindProperties.CertificateMappingMethods: 
-return 'Certificate Mapping Methods'
-case ActiveDirectoryKindProperties.StrongCertificateBindingEnforcementRaw: 
-return 'Strong Certificate Binding Enforcement (Raw)'
-case ActiveDirectoryKindProperties.StrongCertificateBindingEnforcement: 
-return 'Strong Certificate Binding Enforcement'
-case ActiveDirectoryKindProperties.EKUs: 
-return 'Enhanced Key Usage'
-case ActiveDirectoryKindProperties.SubjectAltRequireUPN: 
-return 'Subject Alternative Name Require UPN'
-case ActiveDirectoryKindProperties.SubjectAltRequireDNS: 
-return 'Subject Alternative Name Require DNS'
-case ActiveDirectoryKindProperties.SubjectAltRequireDomainDNS: 
-return 'Subject Alternative Name Require Domain DNS'
-case ActiveDirectoryKindProperties.SubjectAltRequireEmail: 
-return 'Subject Alternative Name Require Email'
-case ActiveDirectoryKindProperties.SubjectAltRequireSPN: 
-return 'Subject Alternative Name Require SPN'
-case ActiveDirectoryKindProperties.SubjectRequireEmail: 
-return 'Subject Require Email'
-case ActiveDirectoryKindProperties.AuthorizedSignatures: 
-return 'Authorized Signatures Required'
-case ActiveDirectoryKindProperties.ApplicationPolicies: 
-return 'Application Policies Required'
-case ActiveDirectoryKindProperties.IssuancePolicies: 
-return 'Issuance Policies Required'
-case ActiveDirectoryKindProperties.SchemaVersion: 
-return 'Schema Version'
-case ActiveDirectoryKindProperties.RequiresManagerApproval: 
-return 'Requires Manager Approval'
-case ActiveDirectoryKindProperties.AuthenticationEnabled: 
-return 'Authentication Enabled'
-case ActiveDirectoryKindProperties.SchannelAuthenticationEnabled: 
-return 'Schannel Authentication Enabled'
-case ActiveDirectoryKindProperties.EnrolleeSuppliesSubject: 
-return 'Enrollee Supplies Subject'
-case ActiveDirectoryKindProperties.CertificateApplicationPolicy: 
-return 'Application Policy Extensions'
-case ActiveDirectoryKindProperties.CertificateNameFlag: 
-return 'Certificate Name Flags'
-case ActiveDirectoryKindProperties.EffectiveEKUs: 
-return 'Effective EKUs'
-case ActiveDirectoryKindProperties.EnrollmentFlag: 
-return 'Enrollment Flags'
-case ActiveDirectoryKindProperties.Flags: 
-return 'Flags'
-case ActiveDirectoryKindProperties.NoSecurityExtension: 
-return 'No Security Extension'
-case ActiveDirectoryKindProperties.RenewalPeriod: 
-return 'Renewal Period'
-case ActiveDirectoryKindProperties.ValidityPeriod: 
-return 'Validity Period'
-case ActiveDirectoryKindProperties.OID: 
-return 'OID'
-case ActiveDirectoryKindProperties.HomeDirectory: 
-return 'Home Directory'
-case ActiveDirectoryKindProperties.CertificatePolicy: 
-return 'Issuance Policy Extensions'
-case ActiveDirectoryKindProperties.CertTemplateOID: 
-return 'Certificate Template OID'
-case ActiveDirectoryKindProperties.GroupLinkID: 
-return 'Group Link ID'
-case ActiveDirectoryKindProperties.ObjectGUID: 
-return 'Object GUID'
-case ActiveDirectoryKindProperties.ExpirePasswordsOnSmartCardOnlyAccounts: 
-return 'Expire Passwords on Smart Card only Accounts'
-case ActiveDirectoryKindProperties.MachineAccountQuota: 
-return 'Machine Account Quota'
-case ActiveDirectoryKindProperties.SupportedKerberosEncryptionTypes: 
-return 'Supported Kerberos Encryption Types'
-case ActiveDirectoryKindProperties.TGTDelegationEnabled: 
-return 'TGT Delegation Enabled'
-case ActiveDirectoryKindProperties.PasswordStoredUsingReversibleEncryption: 
-return 'Password Stored Using Reversible Encryption'
-case ActiveDirectoryKindProperties.SmartcardRequired: 
-return 'Smartcard Required'
-case ActiveDirectoryKindProperties.UseDESKeyOnly: 
-return 'Use DES Key Only'
-case ActiveDirectoryKindProperties.LogonScriptEnabled: 
-return 'Logon Script Enabled'
-case ActiveDirectoryKindProperties.LockedOut: 
-return 'Locked Out'
-case ActiveDirectoryKindProperties.UserCannotChangePassword: 
-return 'User Cannot Change Password'
-case ActiveDirectoryKindProperties.PasswordExpired: 
-return 'Password Expired'
-case ActiveDirectoryKindProperties.DSHeuristics: 
-return 'DSHeuristics'
-case ActiveDirectoryKindProperties.UserAccountControl: 
-return 'User Account Control'
-case ActiveDirectoryKindProperties.TrustAttributes: 
-return 'Trust Attributes'
-case ActiveDirectoryKindProperties.MinPwdLength: 
-return 'Minimum password length'
-case ActiveDirectoryKindProperties.PwdProperties: 
-return 'Password Properties'
-case ActiveDirectoryKindProperties.PwdHistoryLength: 
-return 'Password History Length'
-case ActiveDirectoryKindProperties.LockoutThreshold: 
-return 'Lockout Threshold'
-case ActiveDirectoryKindProperties.MinPwdAge: 
-return 'Minimum Password Age'
-case ActiveDirectoryKindProperties.MaxPwdAge: 
-return 'Maximum Password Age'
-case ActiveDirectoryKindProperties.LockoutDuration: 
-return 'Lockout Duration'
-case ActiveDirectoryKindProperties.LockoutObservationWindow: 
-return 'Lockout Observation Window'
-case ActiveDirectoryKindProperties.OwnerSid: 
-return 'Owner SID'
-case ActiveDirectoryKindProperties.SMBSigning: 
-return 'SMB Signing'
-case ActiveDirectoryKindProperties.WebClientRunning: 
-return 'WebClient Running'
-case ActiveDirectoryKindProperties.RestrictOutboundNTLM: 
-return 'Restrict Outbound NTLM'
-case ActiveDirectoryKindProperties.GMSA: 
-return 'GMSA'
-case ActiveDirectoryKindProperties.MSA: 
-return 'MSA'
-case ActiveDirectoryKindProperties.DoesAnyAceGrantOwnerRights: 
-return 'Does Any ACE Grant Owner Rights'
-case ActiveDirectoryKindProperties.DoesAnyInheritedAceGrantOwnerRights: 
-return 'Does Any Inherited ACE Grant Owner Rights'
-case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTP: 
-return 'ADCS Web Enrollment HTTP'
-case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTPS: 
-return 'ADCS Web Enrollment HTTPS'
-case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTPSEPA: 
-return 'ADCS Web Enrollment HTTPS EPA'
-case ActiveDirectoryKindProperties.LDAPSigning: 
-return 'LDAP Signing'
-case ActiveDirectoryKindProperties.LDAPAvailable: 
-return 'LDAP Available'
-case ActiveDirectoryKindProperties.LDAPSAvailable: 
-return 'LDAPS Available'
-case ActiveDirectoryKindProperties.LDAPSEPA: 
-return 'LDAPS EPA'
-case ActiveDirectoryKindProperties.IsDC: 
-return 'Is Domain Controller'
-default:
-return undefined
-}
+export function ActiveDirectoryKindPropertiesToDisplay(value: ActiveDirectoryKindProperties): string | undefined {
+    switch (value) {
+        case ActiveDirectoryKindProperties.AdminCount:
+            return 'Admin Count';
+        case ActiveDirectoryKindProperties.CASecurityCollected:
+            return 'CA Security Collected';
+        case ActiveDirectoryKindProperties.CAName:
+            return 'CA Name';
+        case ActiveDirectoryKindProperties.CertChain:
+            return 'Certificate Chain';
+        case ActiveDirectoryKindProperties.CertName:
+            return 'Certificate Name';
+        case ActiveDirectoryKindProperties.CertThumbprint:
+            return 'Certificate Thumbprint';
+        case ActiveDirectoryKindProperties.CertThumbprints:
+            return 'Certificate Thumbprints';
+        case ActiveDirectoryKindProperties.HasEnrollmentAgentRestrictions:
+            return 'Has Enrollment Agent Restrictions';
+        case ActiveDirectoryKindProperties.EnrollmentAgentRestrictionsCollected:
+            return 'Enrollment Agent Restrictions Collected';
+        case ActiveDirectoryKindProperties.IsUserSpecifiesSanEnabled:
+            return 'Is User Specifies San Enabled';
+        case ActiveDirectoryKindProperties.IsUserSpecifiesSanEnabledCollected:
+            return 'Is User Specifies San Enabled Collected';
+        case ActiveDirectoryKindProperties.RoleSeparationEnabled:
+            return 'Role Separation Enabled';
+        case ActiveDirectoryKindProperties.RoleSeparationEnabledCollected:
+            return 'Role Separation Enabled Collected';
+        case ActiveDirectoryKindProperties.HasBasicConstraints:
+            return 'Has Basic Constraints';
+        case ActiveDirectoryKindProperties.BasicConstraintPathLength:
+            return 'Basic Constraint Path Length';
+        case ActiveDirectoryKindProperties.UnresolvedPublishedTemplates:
+            return 'Unresolved Published Certificate Templates';
+        case ActiveDirectoryKindProperties.DNSHostname:
+            return 'DNS Hostname';
+        case ActiveDirectoryKindProperties.CrossCertificatePair:
+            return 'Cross Certificate Pair';
+        case ActiveDirectoryKindProperties.DistinguishedName:
+            return 'Distinguished Name';
+        case ActiveDirectoryKindProperties.DomainFQDN:
+            return 'Domain FQDN';
+        case ActiveDirectoryKindProperties.DomainSID:
+            return 'Domain SID';
+        case ActiveDirectoryKindProperties.Sensitive:
+            return 'Marked Sensitive';
+        case ActiveDirectoryKindProperties.BlocksInheritance:
+            return 'Blocks GPO Inheritance';
+        case ActiveDirectoryKindProperties.IsACL:
+            return 'Is ACL';
+        case ActiveDirectoryKindProperties.IsACLProtected:
+            return 'ACL Inheritance Denied';
+        case ActiveDirectoryKindProperties.IsDeleted:
+            return 'Is Deleted';
+        case ActiveDirectoryKindProperties.Enforced:
+            return 'Enforced';
+        case ActiveDirectoryKindProperties.Department:
+            return 'Department';
+        case ActiveDirectoryKindProperties.HasCrossCertificatePair:
+            return 'Has Cross Certificate Pair';
+        case ActiveDirectoryKindProperties.HasSPN:
+            return 'Has SPN';
+        case ActiveDirectoryKindProperties.UnconstrainedDelegation:
+            return 'Allows Unconstrained Delegation';
+        case ActiveDirectoryKindProperties.LastLogon:
+            return 'Last Logon';
+        case ActiveDirectoryKindProperties.LastLogonTimestamp:
+            return 'Last Logon (Replicated)';
+        case ActiveDirectoryKindProperties.IsPrimaryGroup:
+            return 'Is Primary Group';
+        case ActiveDirectoryKindProperties.HasLAPS:
+            return 'LAPS Enabled';
+        case ActiveDirectoryKindProperties.DontRequirePreAuth:
+            return 'Do Not Require Pre-Authentication';
+        case ActiveDirectoryKindProperties.LogonType:
+            return 'Logon Type';
+        case ActiveDirectoryKindProperties.HasURA:
+            return 'Has User Rights Assignment Collection';
+        case ActiveDirectoryKindProperties.PasswordNeverExpires:
+            return 'Password Never Expires';
+        case ActiveDirectoryKindProperties.PasswordNotRequired:
+            return 'Password Not Required';
+        case ActiveDirectoryKindProperties.FunctionalLevel:
+            return 'Functional Level';
+        case ActiveDirectoryKindProperties.TrustType:
+            return 'Trust Type';
+        case ActiveDirectoryKindProperties.SidFiltering:
+            return 'SID Filtering Enabled';
+        case ActiveDirectoryKindProperties.TrustedToAuth:
+            return 'Trusted For Constrained Delegation';
+        case ActiveDirectoryKindProperties.SamAccountName:
+            return 'SAM Account Name';
+        case ActiveDirectoryKindProperties.CertificateMappingMethodsRaw:
+            return 'Certificate Mapping Methods (Raw)';
+        case ActiveDirectoryKindProperties.CertificateMappingMethods:
+            return 'Certificate Mapping Methods';
+        case ActiveDirectoryKindProperties.StrongCertificateBindingEnforcementRaw:
+            return 'Strong Certificate Binding Enforcement (Raw)';
+        case ActiveDirectoryKindProperties.StrongCertificateBindingEnforcement:
+            return 'Strong Certificate Binding Enforcement';
+        case ActiveDirectoryKindProperties.EKUs:
+            return 'Enhanced Key Usage';
+        case ActiveDirectoryKindProperties.SubjectAltRequireUPN:
+            return 'Subject Alternative Name Require UPN';
+        case ActiveDirectoryKindProperties.SubjectAltRequireDNS:
+            return 'Subject Alternative Name Require DNS';
+        case ActiveDirectoryKindProperties.SubjectAltRequireDomainDNS:
+            return 'Subject Alternative Name Require Domain DNS';
+        case ActiveDirectoryKindProperties.SubjectAltRequireEmail:
+            return 'Subject Alternative Name Require Email';
+        case ActiveDirectoryKindProperties.SubjectAltRequireSPN:
+            return 'Subject Alternative Name Require SPN';
+        case ActiveDirectoryKindProperties.SubjectRequireEmail:
+            return 'Subject Require Email';
+        case ActiveDirectoryKindProperties.AuthorizedSignatures:
+            return 'Authorized Signatures Required';
+        case ActiveDirectoryKindProperties.ApplicationPolicies:
+            return 'Application Policies Required';
+        case ActiveDirectoryKindProperties.IssuancePolicies:
+            return 'Issuance Policies Required';
+        case ActiveDirectoryKindProperties.SchemaVersion:
+            return 'Schema Version';
+        case ActiveDirectoryKindProperties.RequiresManagerApproval:
+            return 'Requires Manager Approval';
+        case ActiveDirectoryKindProperties.AuthenticationEnabled:
+            return 'Authentication Enabled';
+        case ActiveDirectoryKindProperties.SchannelAuthenticationEnabled:
+            return 'Schannel Authentication Enabled';
+        case ActiveDirectoryKindProperties.EnrolleeSuppliesSubject:
+            return 'Enrollee Supplies Subject';
+        case ActiveDirectoryKindProperties.CertificateApplicationPolicy:
+            return 'Application Policy Extensions';
+        case ActiveDirectoryKindProperties.CertificateNameFlag:
+            return 'Certificate Name Flags';
+        case ActiveDirectoryKindProperties.EffectiveEKUs:
+            return 'Effective EKUs';
+        case ActiveDirectoryKindProperties.EnrollmentFlag:
+            return 'Enrollment Flags';
+        case ActiveDirectoryKindProperties.Flags:
+            return 'Flags';
+        case ActiveDirectoryKindProperties.NoSecurityExtension:
+            return 'No Security Extension';
+        case ActiveDirectoryKindProperties.RenewalPeriod:
+            return 'Renewal Period';
+        case ActiveDirectoryKindProperties.ValidityPeriod:
+            return 'Validity Period';
+        case ActiveDirectoryKindProperties.OID:
+            return 'OID';
+        case ActiveDirectoryKindProperties.HomeDirectory:
+            return 'Home Directory';
+        case ActiveDirectoryKindProperties.CertificatePolicy:
+            return 'Issuance Policy Extensions';
+        case ActiveDirectoryKindProperties.CertTemplateOID:
+            return 'Certificate Template OID';
+        case ActiveDirectoryKindProperties.GroupLinkID:
+            return 'Group Link ID';
+        case ActiveDirectoryKindProperties.ObjectGUID:
+            return 'Object GUID';
+        case ActiveDirectoryKindProperties.ExpirePasswordsOnSmartCardOnlyAccounts:
+            return 'Expire Passwords on Smart Card only Accounts';
+        case ActiveDirectoryKindProperties.MachineAccountQuota:
+            return 'Machine Account Quota';
+        case ActiveDirectoryKindProperties.SupportedKerberosEncryptionTypes:
+            return 'Supported Kerberos Encryption Types';
+        case ActiveDirectoryKindProperties.TGTDelegationEnabled:
+            return 'TGT Delegation Enabled';
+        case ActiveDirectoryKindProperties.PasswordStoredUsingReversibleEncryption:
+            return 'Password Stored Using Reversible Encryption';
+        case ActiveDirectoryKindProperties.SmartcardRequired:
+            return 'Smartcard Required';
+        case ActiveDirectoryKindProperties.UseDESKeyOnly:
+            return 'Use DES Key Only';
+        case ActiveDirectoryKindProperties.LogonScriptEnabled:
+            return 'Logon Script Enabled';
+        case ActiveDirectoryKindProperties.LockedOut:
+            return 'Locked Out';
+        case ActiveDirectoryKindProperties.UserCannotChangePassword:
+            return 'User Cannot Change Password';
+        case ActiveDirectoryKindProperties.PasswordExpired:
+            return 'Password Expired';
+        case ActiveDirectoryKindProperties.DSHeuristics:
+            return 'DSHeuristics';
+        case ActiveDirectoryKindProperties.UserAccountControl:
+            return 'User Account Control';
+        case ActiveDirectoryKindProperties.TrustAttributes:
+            return 'Trust Attributes';
+        case ActiveDirectoryKindProperties.MinPwdLength:
+            return 'Minimum password length';
+        case ActiveDirectoryKindProperties.PwdProperties:
+            return 'Password Properties';
+        case ActiveDirectoryKindProperties.PwdHistoryLength:
+            return 'Password History Length';
+        case ActiveDirectoryKindProperties.LockoutThreshold:
+            return 'Lockout Threshold';
+        case ActiveDirectoryKindProperties.MinPwdAge:
+            return 'Minimum Password Age';
+        case ActiveDirectoryKindProperties.MaxPwdAge:
+            return 'Maximum Password Age';
+        case ActiveDirectoryKindProperties.LockoutDuration:
+            return 'Lockout Duration';
+        case ActiveDirectoryKindProperties.LockoutObservationWindow:
+            return 'Lockout Observation Window';
+        case ActiveDirectoryKindProperties.OwnerSid:
+            return 'Owner SID';
+        case ActiveDirectoryKindProperties.SMBSigning:
+            return 'SMB Signing';
+        case ActiveDirectoryKindProperties.WebClientRunning:
+            return 'WebClient Running';
+        case ActiveDirectoryKindProperties.RestrictOutboundNTLM:
+            return 'Restrict Outbound NTLM';
+        case ActiveDirectoryKindProperties.GMSA:
+            return 'GMSA';
+        case ActiveDirectoryKindProperties.MSA:
+            return 'MSA';
+        case ActiveDirectoryKindProperties.DoesAnyAceGrantOwnerRights:
+            return 'Does Any ACE Grant Owner Rights';
+        case ActiveDirectoryKindProperties.DoesAnyInheritedAceGrantOwnerRights:
+            return 'Does Any Inherited ACE Grant Owner Rights';
+        case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTP:
+            return 'ADCS Web Enrollment HTTP';
+        case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTPS:
+            return 'ADCS Web Enrollment HTTPS';
+        case ActiveDirectoryKindProperties.ADCSWebEnrollmentHTTPSEPA:
+            return 'ADCS Web Enrollment HTTPS EPA';
+        case ActiveDirectoryKindProperties.LDAPSigning:
+            return 'LDAP Signing';
+        case ActiveDirectoryKindProperties.LDAPAvailable:
+            return 'LDAP Available';
+        case ActiveDirectoryKindProperties.LDAPSAvailable:
+            return 'LDAPS Available';
+        case ActiveDirectoryKindProperties.LDAPSEPA:
+            return 'LDAPS EPA';
+        case ActiveDirectoryKindProperties.IsDC:
+            return 'Is Domain Controller';
+        case ActiveDirectoryKindProperties.HTTPEnrollmentEndpoints:
+            return 'HTTP Enrollment Endpoints';
+        case ActiveDirectoryKindProperties.HTTPSEnrollmentEndpoints:
+            return 'HTTPS Enrollment Endpoints';
+        case ActiveDirectoryKindProperties.HasVulnerableEndpoint:
+            return 'Has Vulnerable Endpoint';
+        default:
+            return undefined;
+    }
 }
 export function ActiveDirectoryPathfindingEdges (): ActiveDirectoryRelationshipKind[] {
 return [ActiveDirectoryRelationshipKind.Owns,ActiveDirectoryRelationshipKind.GenericAll,ActiveDirectoryRelationshipKind.GenericWrite,ActiveDirectoryRelationshipKind.WriteOwner,ActiveDirectoryRelationshipKind.WriteDACL,ActiveDirectoryRelationshipKind.MemberOf,ActiveDirectoryRelationshipKind.ForceChangePassword,ActiveDirectoryRelationshipKind.AllExtendedRights,ActiveDirectoryRelationshipKind.AddMember,ActiveDirectoryRelationshipKind.HasSession,ActiveDirectoryRelationshipKind.GPLink,ActiveDirectoryRelationshipKind.AllowedToDelegate,ActiveDirectoryRelationshipKind.CoerceToTGT,ActiveDirectoryRelationshipKind.AllowedToAct,ActiveDirectoryRelationshipKind.AdminTo,ActiveDirectoryRelationshipKind.CanPSRemote,ActiveDirectoryRelationshipKind.CanRDP,ActiveDirectoryRelationshipKind.ExecuteDCOM,ActiveDirectoryRelationshipKind.HasSIDHistory,ActiveDirectoryRelationshipKind.AddSelf,ActiveDirectoryRelationshipKind.DCSync,ActiveDirectoryRelationshipKind.ReadLAPSPassword,ActiveDirectoryRelationshipKind.ReadGMSAPassword,ActiveDirectoryRelationshipKind.DumpSMSAPassword,ActiveDirectoryRelationshipKind.SQLAdmin,ActiveDirectoryRelationshipKind.AddAllowedToAct,ActiveDirectoryRelationshipKind.WriteSPN,ActiveDirectoryRelationshipKind.AddKeyCredentialLink,ActiveDirectoryRelationshipKind.SyncLAPSPassword,ActiveDirectoryRelationshipKind.WriteAccountRestrictions,ActiveDirectoryRelationshipKind.WriteGPLink,ActiveDirectoryRelationshipKind.GoldenCert,ActiveDirectoryRelationshipKind.ADCSESC1,ActiveDirectoryRelationshipKind.ADCSESC3,ActiveDirectoryRelationshipKind.ADCSESC4,ActiveDirectoryRelationshipKind.ADCSESC6a,ActiveDirectoryRelationshipKind.ADCSESC6b,ActiveDirectoryRelationshipKind.ADCSESC9a,ActiveDirectoryRelationshipKind.ADCSESC9b,ActiveDirectoryRelationshipKind.ADCSESC10a,ActiveDirectoryRelationshipKind.ADCSESC10b,ActiveDirectoryRelationshipKind.ADCSESC13,ActiveDirectoryRelationshipKind.SyncedToEntraUser,ActiveDirectoryRelationshipKind.CoerceAndRelayNTLMToSMB,ActiveDirectoryRelationshipKind.CoerceAndRelayNTLMToADCS,ActiveDirectoryRelationshipKind.WriteOwnerLimitedRights,ActiveDirectoryRelationshipKind.OwnsLimitedRights,ActiveDirectoryRelationshipKind.CoerceAndRelayNTLMToLDAP,ActiveDirectoryRelationshipKind.CoerceAndRelayNTLMToLDAPS,ActiveDirectoryRelationshipKind.Contains,ActiveDirectoryRelationshipKind.DCFor,ActiveDirectoryRelationshipKind.TrustedBy]
