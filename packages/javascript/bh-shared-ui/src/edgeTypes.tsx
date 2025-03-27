@@ -141,6 +141,7 @@ export const AllEdgeTypes: Category[] = [
                     AzureRelationshipKind.HasRole,
                     AzureRelationshipKind.ManagedIdentity,
                     AzureRelationshipKind.MemberOf,
+                    AzureRelationshipKind.O365MemberOf,
                     AzureRelationshipKind.NodeResourceGroup,
                     AzureRelationshipKind.PrivilegedAuthAdmin,
                     AzureRelationshipKind.PrivilegedRoleAdmin,

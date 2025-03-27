@@ -515,6 +515,40 @@ func ConvertAzureGroupMembersToRels(data models.GroupMembers) []IngestibleRelati
 	return relationships
 }
 
+func ConvertAzureGroup365MembersToRels(data models.Group365Members) []IngestibleRelationship {
+	relationships := make([]IngestibleRelationship, 0)
+
+	for _, raw := range data.Members {
+		var (
+			member azure2.DirectoryObject
+		)
+		if err := json.Unmarshal(raw.Member, &member); err != nil {
+			slog.Error(fmt.Sprintf(SerialError, "azure Microsoft 365 group member", err))
+		} else if memberType, err := ExtractTypeFromDirectoryObject(member); errors.Is(err, ErrInvalidType) {
+			slog.Warn(fmt.Sprintf(ExtractError, err))
+		} else if err != nil {
+			slog.Error(fmt.Sprintf(ExtractError, err))
+		} else {
+			relationships = append(relationships, NewIngestibleRelationship(
+				IngestibleSource{
+					Source:     strings.ToUpper(member.Id),
+					SourceType: memberType,
+				},
+				IngestibleTarget{
+					TargetType: azure.Group365,
+					Target:     strings.ToUpper(data.GroupId),
+				},
+				IngestibleRel{
+					RelProps: map[string]any{},
+					RelType:  azure.O365MemberOf,
+				},
+			))
+		}
+	}
+
+	return relationships
+}
+
 func ConvertAzureGroupOwnerToRels(data models.GroupOwners) []IngestibleRelationship {
 	relationships := make([]IngestibleRelationship, 0)
 

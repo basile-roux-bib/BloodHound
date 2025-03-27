@@ -77,3 +77,31 @@ Il semble y avoir également des choses à changer sur le fichier **go/ein** qui
 
 **packages\javascript\bh-shared-ui\src\utils\icons.ts** Relatif aux icons des nodes.  
 *TODO : Ajouter/Supprimer le node d'intérêt et définir sa représentation et sa couleur*
+
+## Ajout d'une relation
+
+**packages\go\analysis\azure\queries.go** Contiens les requêtes nécessaires à l'analyse des données injectées.  
+*TODO : Ajouter les requêtes spécifiques à la relation*
+
+**packages\go\graphschema\azure\azure.go** Définit les différents types de relations,nodes etc...  Généré automatiquement pas Cuelang.
+
+**packages\cue\bh\azure\azure.cue** Schéma Cuelang à modifier
+*TODO : Ajouter la relation là où elle convient (selon si relation de controle, d'execution de privilège etc...)*
+
+**packages\javascript\bh-shared-ui\src\components\HelpTexts\index.tsx** Affiche les différentes informations à propos d'une relation
+*TODO : Créer un dossier avec sa relation puis l'importer*
+
+**packages\go\analysis\azure\azure.go** définit les relations de descendances et non descendance.  
+*TODO : Ajouter la relation selon sa nature*
+
+**packages\go\analysis\azure\filters.go** Définit des filtres utilsés pour analyser les relations et les entité dans un graphe Azure.  
+*TODO : Ajouter la relation dans les fonctions qui conviennent, créer de nouveaux filtres au besoin etc...*
+
+**packages\go\analysis\azure\role.go** utilisée pour gérer les rôles et leurs membres.  
+*TODO : Ajouter si besoin sa relation*
+
+**packages\go\ein\azure.go**  
+*TODO : Ajouter une fonction pour la relation et remonter la chaine d'appel en ajoutant à chaque fois la fonction adéquate*
+
+**packages\javascript\bh-shared-ui\src\graphSchema.ts** Liste des différents éléments (nodes, relations ...) pour l'UI  
+*TODO : Ajouter la relation*
