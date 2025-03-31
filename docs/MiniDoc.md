@@ -105,3 +105,7 @@ Il semble y avoir également des choses à changer sur le fichier **go/ein** qui
 
 **packages\javascript\bh-shared-ui\src\graphSchema.ts** Liste des différents éléments (nodes, relations ...) pour l'UI  
 *TODO : Ajouter la relation*
+
+## Les tests
+
+**cmd\api\src\test\integration\harnesses.go** Réunit la majorité des set-ups pour les tests d'intégrations, que ce soit pour azure ou active directory.

@@ -233,7 +233,7 @@ func (s *GraphTestContext) NewAzureGroup365(name, objectID, tenantID string) *gr
 		common.Name:              name,
 		common.ObjectID:          objectID,
 		azure.TenantID:           tenantID,
-		azure.IsAssignableToRole: true,
+		azure.IsAssignableToRole: false,
 	}), azure.Entity, azure.Group365)
 }
 

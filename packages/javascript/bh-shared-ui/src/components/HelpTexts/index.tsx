@@ -40,6 +40,7 @@ import AZGetCertificates from './AZGetCertificates/AZGetCertificates';
 import AZGetKeys from './AZGetKeys/AZGetKeys';
 import AZGetSecrets from './AZGetSecrets/AZGetSecrets';
 import AZGlobalAdmin from './AZGlobalAdmin/AZGlobalAdmin';
+import AZGroup365Member from './AZGroup365Member/AZGroup365Member';
 import AZHasRole from './AZHasRole/AZHasRole';
 import AZKeyVaultKVContributor from './AZKeyVaultKVContributor/AZKeyVaultKVContributor';
 import AZLogicAppContributor from './AZLogicAppContributor/AZLogicAppContributor';
@@ -57,7 +58,6 @@ import AZMGRoleManagement_ReadWrite_Directory from './AZMGRoleManagement_ReadWri
 import AZMGServicePrincipalEndpoint_ReadWrite_All from './AZMGServicePrincipalEndpoint_ReadWrite_All/AZMGServicePrincipalEndpoint_ReadWrite_All';
 import AZManagedIdentity from './AZManagedIdentity/AZManagedIdentity';
 import AZMemberOf from './AZMemberOf/AZMemberOf';
-import AZGroup365Member from './AZGroup365Member/AZGroup365Member';
 import AZNodeResourceGroup from './AZNodeResourceGroup/AZNodeResourceGroup';
 import AZOwns from './AZOwns/AZOwns';
 import AZPrivilegedAuthAdmin from './AZPrivilegedAuthAdmin/AZPrivilegedAuthAdmin';
